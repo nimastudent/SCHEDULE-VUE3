@@ -1,4 +1,5 @@
 import { httpGet, httpPost } from "../../../libs/http";
+import { formatScheduleData } from "./utils";
 
 export async function getInitialData() {
   const { schedule, duration, course, teacher } = await httpGet(
@@ -6,7 +7,7 @@ export async function getInitialData() {
   );
 
   return Promise.resolve({
-    schedule,
+    schedule: formatScheduleData(schedule),
     duration,
     course,
     teacher,

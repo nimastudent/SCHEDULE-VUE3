@@ -4,36 +4,41 @@
       <week-title></week-title>
       <tr v-for="item of duration" :key="item.begin_time">
         <duration-title :title="item.title"></duration-title>
-        <td v-for="n in 7" :key="n"></td>
+        <td v-for="n in 7" :key="n" @click="handleTDClick(item.begin_time, n)">
+          <schedule-card
+            v-if="schedule[item.begin_time + '_' + n]"
+            :data="schedule[item.begin_time + '_' + n]"
+          >
+          </schedule-card>
+        </td>
       </tr>
     </table>
   </div>
 </template>
 
 <script setup>
-import { onMounted, reactive, toRefs } from "vue";
+import { onMounted, toRefs } from "vue";
 import { getInitialData } from "./scripts/service";
+import { useInitialData } from "./scripts/hooks";
 import "./style/index.scss";
 import WeekTitle from "./WeekTitle.vue";
 import DurationTitle from "./DurationTitle.vue";
+import ScheduleCard from "./ScheduleCard.vue";
 
-const state = reactive({
-  duration: [],
-  schedule: [],
-  course: [],
-  teacher: [],
-});
+const [data, setInitialData, setSchedule] = useInitialData();
 
 onMounted(async () => {
-  const { schedule, duration, course, teacher } = await getInitialData();
+  setInitialData(await getInitialData());
 
-  state.schedule = schedule;
-  state.duration = duration;
-  state.teacher = teacher;
-  state.course = course;
+  console.log(data);
 });
 
-const { schedule, duration, course, teacher } = toRefs(state);
+const handleTDClick = (beginTime, weekDay) => {
+  console.log(beginTime);
+  console.log(weekDay);
+};
+
+const { schedule, duration, course, teacher } = toRefs(data);
 </script>
 
 <style lang="scss" scoped></style>

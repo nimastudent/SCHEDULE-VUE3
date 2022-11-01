@@ -4,6 +4,7 @@
 
 <script setup>
 import ScheduleTable from "./components/ScheduleTable";
+import MyMessageBoxVue from "./components/MyMessageBox/MyMessageBox";
 
 // import { onMounted } from "vue";
 // import axios from "axios";
