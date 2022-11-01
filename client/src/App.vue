@@ -1,10 +1,18 @@
 <template>
-  <schedule-table></schedule-table>
+	<schedule-table></schedule-table>
+	<!-- <my-message-box
+		:title="'删除课程'"
+		:btnCancelText="'取消'"
+		:btnConfirmText="'删除'"
+	></my-message-box> -->
+	<!--  title: "删除课程",
+    btnCancelText: "取消",
+    btnConfirmText: "删除", -->
 </template>
 
 <script setup>
 import ScheduleTable from "./components/ScheduleTable";
-import MyMessageBoxVue from "./components/MyMessageBox/MyMessageBox";
+import MyMessageBox from "./components/MyMessageBox/MyMessageBox";
 
 // import { onMounted } from "vue";
 // import axios from "axios";
