@@ -37,3 +37,8 @@ export function timeStampToTime(timeStamp) {
 
   return `${hours}:${minutes}`;
 }
+
+export function checkHasData(scheduleData){
+  const text = scheduleData ? '编辑' : '新增';
+  return `${text}课程安排`
+}
